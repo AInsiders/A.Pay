@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "1.0",
+  "exportedAt": "2026-04-01T03:45:00",
+  "snapshot": {
+    "today": "2026-03-31",
+    "accounts": [
+      {
+        "id": "wallet-cushion",
+        "name": "Wallet Cushion",
+        "type": "Cash",
+        "currentBalance": 20.0,
+        "availableBalance": 20.0,
+        "protectedFromPayoff": false,
+        "includeInPlanning": true,
+        "notes": "Starting cushion from Mar 31 Cash App borrow event.",
+        "tags": [
+          "starting-cash"
+        ],
+        "customFields": [
+          {
+            "id": "borrow-allocation",
+            "label": "Borrow Allocation",
+            "value": "Coffee 60, Gas 20, Cushion 20"
+          }
+        ]
+      },
+      {
+        "id": "main-checking",
+        "name": "Main Checking",
+        "type": "Checking",
+        "currentBalance": 0.0,
+        "availableBalance": 0.0,
+        "protectedFromPayoff": false,
+        "includeInPlanning": true,
+        "notes": "Primary deposit account for paychecks.",
+        "tags": [
+          "bank"
+        ],
+        "customFields": []
+      }
+    ],
+    "incomeSources": [
+      {
+        "id": "person-1-weekly",
+        "name": "Person 1 Weekly Pay",
+        "payerLabel": "Person 1",
+        "recurringRule": {
+          "type": "WEEKLY",
+          "anchorDate": "2026-04-03",
+          "dayOfWeek": 5
+        },
+        "amountRange": {
+          "minimum": 400.0,
+          "target": 450.0,
+          "maximum": 500.0
+        },
+        "forecastAmountMode": "RANGE",
+        "inputMode": "GROSS",
+        "nextExpectedPayDate": "2026-04-03",
+        "expectedDateHints": [],
+        "isManualOnly": false,
+        "isActive": true,
+        "notes": "Weekly Thu/Fri income structure. Gross 400-500 with 10 percent tithe handled by deduction rule.",
+        "tags": [
+          "weekly",
+          "person-1"
+        ],
+        "customFields": [
+          {
+            "id": "pay-window-note",
+            "label": "Pay Window",
+            "value": "Apr 2/3, Apr 9/10, Apr 16/17, Apr 23/24, Apr 30/May 1, continues weekly"
+          }
+        ],
+        "deductionRuleIds": [
+          "tithe-person-1"
+        ]
+      },
+      {
+        "id": "person-2-biweekly",
+        "name": "Person 2 Biweekly Pay",
+        "payerLabel": "Person 2",
+        "recurringRule": {
+          "type": "BIWEEKLY",
+          "anchorDate": "2026-04-07",
+          "dayOfWeek": 2
+        },
+        "amountRange": {
+          "minimum": 300.0,
+          "target": 450.0,
+          "maximum": 600.0
+        },
+        "forecastAmountMode": "RANGE",
+        "inputMode": "GROSS",
+        "nextExpectedPayDate": "2026-04-07",
+        "expectedDateHints": [],
+        "isManualOnly": false,
+        "isActive": true,
+        "notes": "Biweekly Tuesday income structure. Gross 300-600 with 10 percent tithe handled by deduction rule.",
+        "tags": [
+          "biweekly",
+          "person-2"
+        ],
+        "customFields": [
+          {
+            "id": "pay-window-note",
+            "label": "Pay Window",
+            "value": "Apr 7, Apr 21, May 5, May 19, June 2, continues biweekly"
+          }
+        ],
+        "deductionRuleIds": [
+          "tithe-person-2"
+        ]
+      }
+    ],
+    "paychecks": [],
+    "paycheckActions": [],
+    "bills": [
+      {
+        "id": "coffee-bill",
+        "name": "Coffee",
+        "amountDue": 110.0,
+        "totalBalance": null,
+        "recurringRule": {
+          "type": "EVERY_X_DAYS",
+          "intervalDays": 28,
+          "anchorDate": "2026-04-07"
+        },
+        "graceDays": 0,
+        "minimumDue": 110.0,
+        "currentAmountDue": 110.0,
+        "status": "UPCOMING",
+        "category": "Subscription",
+        "isEssential": false,
+        "autoPay": false,
+        "isVariable": false,
+        "expectedRange": null,
+        "notes": "Scenario A notes that 60 was already used and 50 may remain; Scenario B treats 110 as the full later due. Current import uses full due later structure.",
+        "tags": [
+          "coffee"
+        ],
+        "customFields": [
+          {
+            "id": "ambiguity",
+            "label": "Ambiguity Note",
+            "value": "Either 50 remaining or full 110 later due depending on interpretation"
+          }
+        ],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      },
+      {
+        "id": "chatgpt-bill",
+        "name": "ChatGPT",
+        "amountDue": 20.0,
+        "totalBalance": null,
+        "recurringRule": {
+          "type": "MONTHLY",
+          "anchorDate": "2026-04-09",
+          "dayOfMonth": 9
+        },
+        "graceDays": 0,
+        "minimumDue": 20.0,
+        "currentAmountDue": 20.0,
+        "status": "UPCOMING",
+        "category": "Subscription",
+        "isEssential": false,
+        "autoPay": false,
+        "isVariable": false,
+        "expectedRange": null,
+        "notes": "",
+        "tags": [
+          "subscription"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      },
+      {
+        "id": "cursor-bill",
+        "name": "Cursor",
+        "amountDue": 20.0,
+        "totalBalance": null,
+        "recurringRule": {
+          "type": "MONTHLY",
+          "anchorDate": "2026-04-05",
+          "dayOfMonth": 5
+        },
+        "graceDays": 0,
+        "minimumDue": 20.0,
+        "currentAmountDue": 20.0,
+        "status": "UPCOMING",
+        "category": "Subscription",
+        "isEssential": false,
+        "autoPay": false,
+        "isVariable": false,
+        "expectedRange": null,
+        "notes": "",
+        "tags": [
+          "subscription"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      },
+      {
+        "id": "atc-protection-bill",
+        "name": "ATC Protection",
+        "amountDue": 40.0,
+        "totalBalance": null,
+        "recurringRule": {
+          "type": "MONTHLY",
+          "anchorDate": "2026-04-26",
+          "dayOfMonth": 26
+        },
+        "graceDays": 0,
+        "minimumDue": 40.0,
+        "currentAmountDue": 40.0,
+        "status": "UPCOMING",
+        "category": "Insurance",
+        "isEssential": true,
+        "autoPay": false,
+        "isVariable": false,
+        "expectedRange": null,
+        "notes": "",
+        "tags": [
+          "protection"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      },
+      {
+        "id": "verizon-bill",
+        "name": "Verizon",
+        "amountDue": 255.0,
+        "totalBalance": null,
+        "recurringRule": {
+          "type": "MONTHLY",
+          "anchorDate": "2026-04-18",
+          "dayOfMonth": 18
+        },
+        "graceDays": 0,
+        "minimumDue": 255.0,
+        "currentAmountDue": 255.0,
+        "status": "UPCOMING",
+        "category": "Communication",
+        "isEssential": true,
+        "autoPay": false,
+        "isVariable": false,
+        "expectedRange": null,
+        "notes": "April 18 fixed example carried into monthly recurrence.",
+        "tags": [
+          "phone"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      }
+    ],
+    "debts": [
+      {
+        "id": "cash-app-borrow",
+        "name": "Cash App Borrow",
+        "lender": "Cash App",
+        "type": "REVOLVING_CREDIT",
+        "currentBalance": 800.0,
+        "availableCredit": 100.0,
+        "minimumDue": 126.0,
+        "requiredDueDate": "2026-04-17",
+        "interestRate": null,
+        "fees": null,
+        "arrearsAmount": 0.0,
+        "status": "CURRENT",
+        "payoffPriority": 1,
+        "snowballOrder": 1,
+        "avalancheOrder": 1,
+        "customOrder": 1,
+        "reborrowAllowed": true,
+        "maxSafeReborrowAmount": 100.0,
+        "notes": "Dataset midpoint uses 800 starting balance after Mar 31 borrow. Required payments total 578, leaving 222 after scheduled payments.",
+        "tags": [
+          "revolving",
+          "cash-app"
+        ],
+        "customFields": [
+          {
+            "id": "range-note",
+            "label": "Range Note",
+            "value": "Working range 700 to 900; midpoint 800 used in plan"
+          }
+        ],
+        "reborrowRuleConfig": {
+          "onlyIfCurrentDuePaid": true,
+          "onlyIfNextHardBillCovered": true,
+          "onlyIfClearedWithinPaychecks": 2,
+          "onlyIfTrendDownward": true
+        },
+        "installments": [
+          {
+            "id": "cash-app-2026-04-17",
+            "label": "Apr 17 required payment",
+            "dueDate": "2026-04-17",
+            "amount": 126.0
+          },
+          {
+            "id": "cash-app-2026-04-24",
+            "label": "Apr 24 required payment",
+            "dueDate": "2026-04-24",
+            "amount": 284.0
+          },
+          {
+            "id": "cash-app-2026-05-01",
+            "label": "May 1 required payment",
+            "dueDate": "2026-05-01",
+            "amount": 168.0
+          }
+        ],
+        "revolvingSettings": {
+          "totalLimit": 900.0,
+          "availableToBorrowNow": 100.0,
+          "requiredDueAmount": 126.0,
+          "dueDates": [
+            "2026-04-17",
+            "2026-04-24",
+            "2026-05-01"
+          ],
+          "reborrowAllowed": true,
+          "maxSafeReborrowAmount": 100.0,
+          "reborrowRuleConfig": {
+            "onlyIfCurrentDuePaid": true,
+            "onlyIfNextHardBillCovered": true,
+            "onlyIfClearedWithinPaychecks": 2,
+            "onlyIfTrendDownward": true
+          }
+        }
+      }
+    ],
+    "expenses": [
+      {
+        "id": "essential-cigarettes",
+        "name": "Cigarettes",
+        "categoryId": null,
+        "categoryLabel": "Essentials",
+        "amount": 70.0,
+        "recurringRule": {
+          "type": "WEEKLY",
+          "anchorDate": "2026-03-31"
+        },
+        "isEssential": true,
+        "isVariable": false,
+        "expectedRange": null,
+        "oneTimeDate": null,
+        "notes": "10 per day equivalent.",
+        "tags": [
+          "essential"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      },
+      {
+        "id": "essential-gas",
+        "name": "Gas",
+        "categoryId": null,
+        "categoryLabel": "Transportation",
+        "amount": 80.0,
+        "recurringRule": {
+          "type": "WEEKLY",
+          "anchorDate": "2026-03-31"
+        },
+        "isEssential": true,
+        "isVariable": false,
+        "expectedRange": null,
+        "oneTimeDate": null,
+        "notes": "11.43 per day equivalent.",
+        "tags": [
+          "essential"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      },
+      {
+        "id": "essential-food",
+        "name": "Food",
+        "categoryId": null,
+        "categoryLabel": "Food",
+        "amount": 70.0,
+        "recurringRule": {
+          "type": "WEEKLY",
+          "anchorDate": "2026-03-31"
+        },
+        "isEssential": true,
+        "isVariable": false,
+        "expectedRange": null,
+        "oneTimeDate": null,
+        "notes": "10 per day equivalent.",
+        "tags": [
+          "essential"
+        ],
+        "customFields": [],
+        "createdAt": "2026-03-31T12:00:00",
+        "updatedAt": "2026-03-31T12:00:00"
+      }
+    ],
+    "housingConfig": {
+      "id": "primary-housing",
+      "currentMonthlyRent": 600.0,
+      "minimumAcceptablePayment": 300.0,
+      "rentDueDay": 1,
+      "notes": "March back pay 300. April can be paid at 300 minimum or 600 full. May onward 600 monthly."
+    },
+    "housingBuckets": [
+      {
+        "id": "rent-march-back-pay",
+        "label": "March back pay",
+        "monthKey": "2026-03",
+        "amountDue": 300.0,
+        "amountPaid": 0.0,
+        "dueDate": "2026-03-01",
+        "isCurrentBucket": false,
+        "notes": "Back pay bucket."
+      },
+      {
+        "id": "rent-april-current",
+        "label": "April current rent",
+        "monthKey": "2026-04",
+        "amountDue": 600.0,
+        "amountPaid": 0.0,
+        "dueDate": "2026-04-01",
+        "isCurrentBucket": true,
+        "notes": "Can be paid at 300 minimum or 600 full depending on mode."
+      }
+    ],
+    "deductionRules": [
+      {
+        "id": "tithe-person-1",
+        "name": "Tithe Person 1",
+        "scope": "INCOME_SOURCE",
+        "incomeSourceId": "person-1-weekly",
+        "valueType": "PERCENTAGE",
+        "fixedAmount": 0.0,
+        "percentage": 0.1,
+        "status": "MANDATORY",
+        "isEnabledByDefault": true,
+        "notes": "10 percent tithe for Person 1.",
+        "tags": [
+          "tithe"
+        ],
+        "customFields": []
+      },
+      {
+        "id": "tithe-person-2",
+        "name": "Tithe Person 2",
+        "scope": "INCOME_SOURCE",
+        "incomeSourceId": "person-2-biweekly",
+        "valueType": "PERCENTAGE",
+        "fixedAmount": 0.0,
+        "percentage": 0.1,
+        "status": "MANDATORY",
+        "isEnabledByDefault": true,
+        "notes": "10 percent tithe for Person 2.",
+        "tags": [
+          "tithe"
+        ],
+        "customFields": []
+      }
+    ],
+    "categories": [],
+    "labels": [],
+    "demoModeState": {
+      "id": "demo_state",
+      "mode": "REAL",
+      "selectedDemoId": null,
+      "demoImportedAt": null,
+      "lastModeChangedAt": "2026-04-01T03:45:00"
+    },
+    "notificationSettings": {
+      "id": "notification_settings",
+      "paydayNotificationsEnabled": false,
+      "recalculateRemindersEnabled": false,
+      "paydayLeadMinutes": 60,
+      "recalculateReminderHour": 18,
+      "recalculateReminderMinute": 0,
+      "funMessageCursor": 0,
+      "updatedAt": "2026-04-01T03:45:00"
+    },
+    "exportMetadata": {
+      "id": "export_metadata",
+      "schemaVersion": 1,
+      "appVersion": "1.0",
+      "lastExportAt": "2026-04-01T03:45:00",
+      "lastImportAt": null,
+      "lastFileName": "billpayer-full-financial-dataset-backup.json"
+    },
+    "settings": {
+      "targetBuffer": 50.0,
+      "planningStyle": "BALANCED",
+      "payoffMode": "SNOWBALL",
+      "housingPaymentMode": "MINIMUM_CURRENT",
+      "selectedScenarioMode": "MOST_EFFICIENT",
+      "notificationPermissionAsked": false,
+      "lastRecalculatedAt": null,
+      "debtFreeLatched": false,
+      "debtFreeScreenDismissed": false
+    }
+  }
+}
