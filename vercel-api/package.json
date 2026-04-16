@@ -1,0 +1,15 @@
+{
+  "name": "billpayer-teller-api",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@noble/ed25519": "^1.7.3",
+    "@noble/hashes": "^1.7.1",
+    "@vercel/kv": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vercel/node": "^3.2.0",
+    "typescript": "^5.7.0"
+  }
+}
