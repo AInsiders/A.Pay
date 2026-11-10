@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import * as ed25519 from "@noble/ed25519";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { decideNonce } from "../../lib/noncePolicy";
 
 function setCors(res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -79,17 +80,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: "No signatures to verify" });
   }
 
-  try {
-    const { kv } = await import("@vercel/kv");
-    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
-      const key = `teller_nonce:${nonce}`;
-      const ok = await kv.get(key);
-      if (ok) {
-        await kv.del(key);
+  const kvConfigured = Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+  const nonceKey = `teller_nonce:${nonce}`;
+  if (kvConfigured) {
+    try {
+      const { kv } = await import("@vercel/kv");
+      const stored = await kv.get(nonceKey);
+      const decision = decideNonce(stored);
+      if (!decision.ok) {
+        return res.status(decision.status).json({ error: decision.error });
       }
+    } catch {
+      return res.status(503).json({
+        error: "Couldn't check the one-time code. Wait a moment and try the bank connection again.",
+      });
     }
-  } catch {
-    // optional KV
   }
 
   const dotted =
@@ -123,6 +128,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!verified) {
     return res.status(401).json({ error: "Signature verification failed" });
+  }
+
+  if (kvConfigured) {
+    try {
+      const { kv } = await import("@vercel/kv");
+      await kv.del(nonceKey);
+    } catch {
+      return res.status(503).json({
+        error: "The signature matched, but the one-time code could not be closed. Try the bank connection again.",
+      });
+    }
   }
 
   return res.status(200).json({ ok: true });

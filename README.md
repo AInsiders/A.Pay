@@ -84,9 +84,27 @@ app/src/main/java/com/a_insiders/billpayer/
 - Normal app storage stays internal.
 - The app does not require storage permission for normal data use.
 
-## Running
+## Web planner
 
-From the repo root:
+The phone screens in this repo show the gaps the web planner is meant to close: the Calendar tab wraps mid-word, an empty plan is marked feasible, and recurring dates are entered as pipe-separated text.
+
+Open `web/index.html` through a local static server from the repo root:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then visit `http://127.0.0.1:8000/web/`. Add income with a normal form, or load the sample backup. The plan says when a check is short, and it does not call an empty month covered.
+
+Check the planner with:
+
+```bash
+node --test web/planner.test.mjs
+```
+
+## Running the Android project
+
+The Gradle settings expect an `:app` module, and that module is not in this checkout. From a checkout that has it:
 
 ```powershell
 .\gradlew.bat testDebugUnitTest
@@ -95,31 +113,9 @@ From the repo root:
 
 To build/install from Android Studio, open the project normally and run the `app` configuration.
 
-## Editing Rules In The UI
+## Editing schedules
 
-To keep the UI flexible without building a separate rule designer for every entity, several editors use text-based power fields:
-
-- Recurring rule: `TYPE|anchorDate|intervalDays|dayOfMonth|semiMonthlyDays`
-- Custom fields: one `label=value` pair per line
-- Debt installments: one `yyyy-mm-dd|amount|label` per line
-
-Examples:
-
-```text
-MONTHLY|2026-04-05||5|
-EVERY_X_DAYS|2026-04-07|28||
-```
-
-```text
-Case manager=Call before paying late fee
-Landlord note=Apply partial payment to April current rent first
-```
-
-```text
-2026-04-17|126|Apr 17 due
-2026-04-24|284|Apr 24 due
-2026-05-01|168|May 1 due
-```
+The web planner edits schedules with dates and a frequency choice (weekly, every two weeks, twice a month, monthly, every few days, or once). Debt payments are separate dated rows. Saved backups still store a `recurringRule` object (`type`, `anchorDate`, `intervalDays`, `dayOfMonth`, `semiMonthlyDays`) and installment objects (`dueDate`, `amount`, `label`).
 
 ## Tests
 

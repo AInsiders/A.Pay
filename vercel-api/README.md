@@ -15,7 +15,7 @@ Deploy this folder as a Vercel project (set **Root Directory** to `vercel-api` i
 
 ## Routes
 
-- `GET /api/teller/nonce` — Returns `{ "nonce": "<hex>" }`. If KV is configured, stores the nonce for 15 minutes and deletes it on successful verify.
+- `GET /api/teller/nonce` — Returns `{ "nonce": "<hex>" }`. If KV is configured, stores the nonce for 15 minutes. Verify accepts that nonce once, and only deletes it after the signature matches, so a failed check can be retried. A missing or already-used nonce is rejected when KV is on.
 - `POST /api/teller/verify-enrollment` — JSON body: `nonce`, `accessToken`, `userId`, `enrollmentId`, `environment`, `signatures` (string array). Verifies an Ed25519 signature from Teller. Does not log the access token.
 - `POST /api/webhooks/teller` — Teller webhook URL; verifies `Teller-Signature` and optionally records `enrollment.disconnected` in KV.
 
